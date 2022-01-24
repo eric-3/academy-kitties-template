@@ -2,12 +2,13 @@
 var colors = Object.values(allColors())
 
 var defaultDNA = {
-    "headcolor" : 10,
-    "mouthColor" : 13,
-    "eyesColor" : 96,
-    "earsColor" : 10,
+    "bodycolor" : 10,
+    "tailcolor" : 10,
+    "eyescolor" : 96,
+    "earscolor" : 10,
     //Cattributes
-    "eyesShape" : 1,
+    "eyeshape" : 1,
+    "earposition" : 1,
     "decorationPattern" : 1,
     "decorationMidcolor" : 13,
     "decorationSidescolor" : 13,
@@ -17,17 +18,18 @@ var defaultDNA = {
 
 // when page load
 $( document ).ready(function() {
-  $('#dnabody').html(defaultDNA.headColor);
-  $('#dnamouth').html(defaultDNA.mouthColor);
-  $('#dnaeyes').html(defaultDNA.eyesColor);
-  $('#dnaears').html(defaultDNA.earsColor);
-    
-//   $('#dnashape').html(defaultDNA.eyesShape)
-//   $('#dnadecoration').html(defaultDNA.decorationPattern)
-//   $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
-//   $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-//   $('#dnaanimation').html(defaultDNA.animation)
-//   $('#dnaspecial').html(defaultDNA.lastNum)
+  $('#dnabody').html(defaultDNA.bodycolor);
+  $('#dnatail').html(defaultDNA.tailcolor);
+  $('#dnaeyes').html(defaultDNA.eyescolor);
+  $('#dnaears').html(defaultDNA.earscolor);
+  //Cattributes
+  $('#dnashape').html(defaultDNA.eyeshape);
+  $('#dnaearposition').html(defaultDNA.earposition);
+  $('#dnadecoration').html(defaultDNA.decorationPattern);
+  $('#dnadecorationMid').html(defaultDNA.decorationMidcolor);
+  $('#dnadecorationSides').html(defaultDNA.decorationSidescolor);
+  $('#dnaanimation').html(defaultDNA.animation);
+  $('#dnaspecial').html(defaultDNA.lastNum);
 
   renderCat(defaultDNA)
 });
@@ -35,10 +37,11 @@ $( document ).ready(function() {
 function getDna(){
     var dna = ''
     dna += $('#dnabody').html()
-    dna += $('#dnamouth').html()
+    dna += $('#dnatail').html()
     dna += $('#dnaeyes').html()
     dna += $('#dnaears').html()
     dna += $('#dnashape').html()
+    dna += $('#dnaearposition').html()
     dna += $('#dnadecoration').html()
     dna += $('#dnadecorationMid').html()
     dna += $('#dnadecorationSides').html()
@@ -49,12 +52,48 @@ function getDna(){
 }
 
 function renderCat(dna){
-    headColor(colors[dna.headcolor],dna.headcolor)
-    $('#bodycolor').val(dna.headcolor)
+    bodyColor(colors[dna.bodycolor],dna.bodycolor)
+    $('#bodycolor').val(dna.bodycolor)
+    tailColor(colors[dna.tailcolor],dna.tailcolor)
+    $('#tailcolor').val(dna.tailcolor)
+    eyesColor(colors[dna.eyescolor],dna.eyescolor)
+    $('#eyescolor').val(dna.eyescolor)
+    earsColor(colors[dna.earscolor],dna.earscolor)
+    $('#earscolor').val(dna.earscolor)
+    eyeVariation(dna.eyeshape)
+    $('eyeshape').val(dna.eyeshape)
+    earVariation(dna.earposition)
+    $('earposition').val(dna.earposition)
+    animationVariation(dna.animation)
+    $('animationname').val(dna.animation)
 }
 
-// Changing cat colors
+// listener functions
 $('#bodycolor').change(()=>{
     var colorVal = $('#bodycolor').val()
-    headColor(colors[colorVal],colorVal)
+    bodyColor(colors[colorVal],colorVal)
+})
+$('#tailcolor').change(()=>{
+    var colorVal = $('#tailcolor').val()
+    tailColor(colors[colorVal],colorVal)
+})
+$('#eyescolor').change(()=>{
+    var colorVal = $('#eyescolor').val()
+    eyesColor(colors[colorVal],colorVal)
+})
+$('#earscolor').change(()=>{
+    var colorVal = $('#earscolor').val()
+    earsColor(colors[colorVal],colorVal)
+})
+$('#eyeshape').change(()=>{
+    var shape = parseInt($('#eyeshape').val())
+    eyeVariation(shape)
+})
+$('#earposition').change(()=>{
+    var position = parseInt($('#earposition').val())
+    earVariation(position)
+})
+$('#animation').change(()=>{
+    var animationVal = parseInt($('#animation').val())
+    animationVariation(animationVal)
 })

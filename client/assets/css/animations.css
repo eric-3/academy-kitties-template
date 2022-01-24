@@ -1,0 +1,48 @@
+.movingTail{
+    animation: moveTail 2s infinite;
+}
+
+.movingHead{
+    animation: moveHead 2s infinite;
+}
+.movingEars{
+    animation: moveEars 3s infinite;
+}
+
+@keyframes moveTail {
+    0% {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(-25deg);
+    }
+    100%{
+        transform: rotate(-20deg);
+    }   
+}
+
+@keyframes moveHead {
+    0% {
+        transform: rotate(0deg);
+    }
+    33% {
+        transform: rotate(-2deg);
+    }
+    66%{
+        transform: rotate(2deg);
+    }   
+    100%{
+        transform:rotate(0deg);
+    }
+}
+
+@keyframes moveEars {
+    0%, 100% {
+        transform:skewX(-5deg);        
+    }
+
+    50% {
+        transform: skewX(5deg);
+    }
+
+}
